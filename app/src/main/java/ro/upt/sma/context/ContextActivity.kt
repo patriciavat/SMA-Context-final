@@ -127,25 +127,18 @@ class ContextActivity : AppCompatActivity(), OnMapReadyCallback {
             override fun onReceive(context: Context, intent: Intent) {
                 // TODO 6: Extract activity type from intent extras and pass it to updateActivityCard method.
                 // Take a look at ActivityRecognitionService to see how intent extras are formed.
-                updateActivityCard(intent.extras[ACTIVITY_EXTRA] as Int)
+
             }
         }
 
         // TODO 7: Register created receiver only for ActivityRecognitionService.INTENT_ACTION.
-        registerReceiver(activityRecognitionReceiver, IntentFilter(INTENT_ACTION))
+        //registerReceiver(activityRecognitionReceiver, IntentFilter(INTENT_ACTION))
     }
 
     private fun updateMap(location: Location) {
         if (googleMap != null) {
             // TODO 3: Clear current marker and create a new marker based on the received location object.
-            googleMap!!.clear()
-            googleMap!!.apply {
-                addMarker(
-                    MarkerOptions()
-                        .position(LatLng(location.latitude, location.longitude))
-                        .title("HERE")
-                )
-            }
+
             // TODO 4: Use CameraUpdateFactory to perform a zoom in.
             googleMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), 12.toFloat()))
         }
